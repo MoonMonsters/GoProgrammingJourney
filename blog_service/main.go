@@ -30,6 +30,9 @@ func init() {
 	}
 }
 
+// @title 博客系统
+// @version 1.0
+// @description Go+Gin框架的博客项目
 func main() {
 	global.Logger.Info("blog_service.start")
 	gin.SetMode(global.ServerSetting.RunMode)
