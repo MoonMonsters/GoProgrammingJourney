@@ -51,10 +51,17 @@ func (t Tag) Create(db *gorm.DB) error {
 // 更新标签数据
 // 更新所选字段
 func (t Tag) Update(db *gorm.DB, values interface{}) error {
-	return db.Model(&t).Where("id = ? AND is_del = ?", t.ID, 0).Updates(values).Error
+	if err := db.Model(t).Updates(values).Where("id = ? AND is_del = ?", t.ID).Error; err != nil {
+		return err
+	}
+	return nil
 }
 
 // 根据id删除数据
 func (t Tag) Delete(db *gorm.DB) error {
 	return db.Where("id = ? AND is_del = ?", t.Model.ID, 0).Delete(&t).Error
+}
+
+func (t Tag) TableName() string {
+	return "blog_tag"
 }
