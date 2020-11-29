@@ -1,6 +1,7 @@
 package app
 
 import (
+	"GoProgrammingJourney/blog_service/global"
 	"github.com/gin-gonic/gin"
 	ut "github.com/go-playground/universal-translator"
 	"gopkg.in/go-playground/validator.v9"
@@ -34,11 +35,16 @@ func (v ValidErrors) Error() string {
 func BindAndValid(c *gin.Context, v interface{}) (bool, ValidErrors) {
 	var errs ValidErrors
 	err := c.ShouldBind(v)
+	global.Logger.Infof("err: %v, v: %v", err, v)
 	if err != nil {
 		v := c.Value("trans")
 		trans, _ := v.(ut.Translator)
 		verrs, ok := err.(validator.ValidationErrors)
 		if !ok {
+			errs = append(errs, &ValidError{
+				Key:     "",
+				Message: err.Error(),
+			})
 			return false, errs
 		}
 
