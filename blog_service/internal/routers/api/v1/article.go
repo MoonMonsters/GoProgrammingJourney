@@ -7,7 +7,6 @@ import (
 	"GoProgrammingJourney/blog_service/pkg/app"
 	"GoProgrammingJourney/blog_service/pkg/convert"
 	"GoProgrammingJourney/blog_service/pkg/errcode"
-	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -25,6 +24,9 @@ func NewArticle() Article {
 	return Article{}
 }
 
+// 获取单篇文章
+// 从api接口中获取数据
+// api -> service -> dao -> model, 调用顺序
 func (a Article) Get(c *gin.Context) {
 
 	param := service.ArticleRequest{
@@ -40,6 +42,7 @@ func (a Article) Get(c *gin.Context) {
 	}
 
 	svc := service.New(c.Request.Context())
+	// 从service层获取数据
 	article, err := svc.GetArticle(&param)
 	if err != nil {
 		global.Logger.Errorf("svc.GetArticle err: %v", err)
@@ -48,6 +51,7 @@ func (a Article) Get(c *gin.Context) {
 		return
 	}
 
+	// 将数据写入context中, 并返回
 	response.ToResponse(article)
 
 	return
@@ -108,12 +112,14 @@ func (a Article) Create(c *gin.Context) {
 	return
 }
 
+// 更新文章
 func (a Article) Update(c *gin.Context) {
-	fmt.Println(c.Params.ByName("id"))
+	// 从路径中获取Article的id值
 	param := service.UpdateArticleRequest{
 		ID: convert.StrTo(c.Param("id")).MustUInt32(),
 	}
 	response := app.NewResponse(c)
+	// 绑定参数到Request实例上
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {
 		global.Logger.Errorf("app.BindAndValid errs: %v", errs)

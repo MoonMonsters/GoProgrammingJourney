@@ -59,12 +59,14 @@ func (d *Dao) UpdateArticle(param *Article) error {
 }
 
 func (d *Dao) GetArticle(id uint32, state uint8) (model.Article, error) {
+	// 拼接成Article实例
 	article := model.Article{
 		Model: &model.Model{
 			ID: id,
 		},
 		State: state,
 	}
+	// 从model层去获取数据
 	return article.Get(d.engine)
 }
 

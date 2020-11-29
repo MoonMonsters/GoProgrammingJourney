@@ -52,6 +52,7 @@ type Article struct {
 }
 
 func (svc *Service) GetArticle(param *ArticleRequest) (*Article, error) {
+	// 从dao层去获取数据
 	article, err := svc.dao.GetArticle(param.ID, param.State)
 	if err != nil {
 		return nil, err

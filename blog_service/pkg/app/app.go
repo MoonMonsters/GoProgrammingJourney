@@ -26,6 +26,7 @@ func (r *Response) ToResponse(data interface{}) {
 	if data == nil {
 		data = gin.H{}
 	}
+	// 返回json格式数据
 	r.Ctx.JSON(http.StatusOK, data)
 }
 

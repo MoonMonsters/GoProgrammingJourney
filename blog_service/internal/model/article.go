@@ -32,8 +32,11 @@ func (a Article) Update(db *gorm.DB, values interface{}) error {
 
 func (a Article) Get(db *gorm.DB) (Article, error) {
 	var article Article
+	// 查询语句
 	db = db.Where("id = ? AND state = ? AND is_del = ?", a.ID, a.State, 0)
+	// 获取第一条数据, 并放入article实例中
 	err := db.First(&article).Error
+	// 数据未找到
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return article, err
 	}

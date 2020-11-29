@@ -34,6 +34,7 @@ func (v ValidErrors) Error() string {
 
 func BindAndValid(c *gin.Context, v interface{}) (bool, ValidErrors) {
 	var errs ValidErrors
+	// 将请求参数绑定到v上
 	err := c.ShouldBind(v)
 	global.Logger.Infof("err: %v, v: %v", err, v)
 	if err != nil {
