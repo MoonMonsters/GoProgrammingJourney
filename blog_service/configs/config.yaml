@@ -12,6 +12,13 @@ App:
   LogSavePath: blog_service/storage/logs
   LogFileName: app
   LogFileExt: .log
+  UploadSavePath: blog_service/storage/uploads
+  UploadServerUrl: http://127.0.0.1:8000/static
+  UploadImageMaxSize: 5 # M
+  UploadImageAllowExts:
+    - .jpg
+    - .jpeg
+    - .png
 
 # 数据库配置
 Database:

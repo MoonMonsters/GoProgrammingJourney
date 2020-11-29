@@ -6,6 +6,7 @@ import (
 	"GoProgrammingJourney/blog_service/internal/routers"
 	"GoProgrammingJourney/blog_service/pkg/logger"
 	"GoProgrammingJourney/blog_service/pkg/setting"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"log"
@@ -39,7 +40,7 @@ func main() {
 	router := routers.NewRouter()
 
 	s := &http.Server{
-		Addr:           ":8080",
+		Addr:           fmt.Sprintf(":%v", global.ServerSetting.HttpPort),
 		Handler:        router,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,

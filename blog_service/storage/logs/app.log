@@ -78,3 +78,9 @@
 2020/11/29 10:55:08 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 27 main.init.0"],"level":"info","message":"err: \u003cnil\u003e, v: \u0026{1 1}","time":1606618508788809000}
 2020/11/29 10:56:53 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 27 main.init.0"],"level":"info","message":"blog_service.start","time":1606618613358433000}
 2020/11/29 10:56:56 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 27 main.init.0"],"level":"info","message":"err: \u003cnil\u003e, v: \u0026{1 1}","time":1606618616456856000}
+2020/11/29 17:16:04 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 28 main.init.0"],"level":"info","message":"blog_service.start","time":1606641364264734000}
+2020/11/29 23:59:45 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 28 main.init.0"],"level":"info","message":"blog_service.start","time":1606665585760686000}
+2020/11/30 00:02:59 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 28 main.init.0"],"level":"info","message":"blog_service.start","time":1606665779606956000}
+2020/11/30 00:03:40 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 28 main.init.0"],"level":"info","message":"blog_service.start","time":1606665820470210000}
+2020/11/30 00:05:06 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 28 main.init.0"],"level":"info","message":"blog_service.start","time":1606665906438786000}
+2020/11/30 00:05:33 {"callers":["/Users/moonmonsters/ChenTao/Code/Golang/GoProgrammingJourney/blog_service/main.go: 28 main.init.0"],"level":"info","message":"blog_service.start","time":1606665933937373000}
