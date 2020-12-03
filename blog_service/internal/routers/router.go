@@ -24,6 +24,7 @@ func NewRouter() *gin.Engine {
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.POST("/upload/file", upload.UploadFile)
+	// 配置下载路径
 	r.StaticFS("/static", http.Dir(global.AppSetting.UploadSavePath))
 
 	apiV1 := r.Group("/api/v1")

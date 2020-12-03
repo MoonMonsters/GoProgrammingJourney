@@ -50,6 +50,7 @@ func CheckContainExt(t FileType, name string) bool {
 	return false
 }
 
+// 检查文件大小
 func CheckMaxSize(t FileType, f multipart.File) bool {
 	content, _ := ioutil.ReadAll(f)
 	size := len(content)
@@ -76,6 +77,7 @@ func CreateSavePath(dst string, perm os.FileMode) error {
 	return nil
 }
 
+//保存文件
 func SaveFile(file *multipart.FileHeader, dst string) error {
 	src, err := file.Open()
 	if err != nil {
@@ -89,6 +91,7 @@ func SaveFile(file *multipart.FileHeader, dst string) error {
 	}
 	defer out.Close()
 
+	// 调用io的复制方法, 直接复制即可
 	_, err = io.Copy(out, src)
 	return err
 }
