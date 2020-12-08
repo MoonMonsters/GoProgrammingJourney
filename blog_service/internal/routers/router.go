@@ -27,6 +27,8 @@ func NewRouter() *gin.Engine {
 	// 配置下载路径
 	r.StaticFS("/static", http.Dir(global.AppSetting.UploadSavePath))
 
+	r.GET("/auth", v1.GetAuth)
+
 	apiV1 := r.Group("/api/v1")
 	{
 		apiV1.POST("tags", tag.Create)

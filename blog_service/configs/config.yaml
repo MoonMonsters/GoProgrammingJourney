@@ -32,3 +32,12 @@ Database:
   ParseTime: True
   MaxIdleConns: 10
   MaxOpenConns: 30
+
+# JWT验证
+JWT:
+  # 秘钥
+  Secret: chentaoxxx
+  # 签发者
+  Issuer: blog_service
+  # 过期时间
+  Expire: 7200
