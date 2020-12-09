@@ -14,10 +14,11 @@ import (
 func NewRouter() *gin.Engine {
 
 	r := gin.New()
-	r.Use(gin.Logger())
-	r.Use(gin.Recovery())
-	r.Use(middleware.Translations())
+	//r.Use(gin.Logger())
+	//r.Use(gin.Recovery())
 	r.Use(middleware.AccessLog())
+	r.Use(middleware.Recovery())
+	r.Use(middleware.Translations())
 
 	tag := v1.NewTag()
 	article := v1.NewArticle()
@@ -31,7 +32,8 @@ func NewRouter() *gin.Engine {
 	r.GET("/auth", v1.GetAuth)
 
 	apiV1 := r.Group("/api/v1")
-	apiV1.Use(middleware.JWT())
+	//apiV1.Use(middleware.JWT())
+	apiV1.Use()
 	{
 		apiV1.POST("tags", tag.Create)
 		apiV1.DELETE("/tags/:id", tag.Delete)

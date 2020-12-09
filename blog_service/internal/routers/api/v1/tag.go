@@ -34,7 +34,6 @@ func (t Tag) Get(c *gin.Context) {
 func (t Tag) List(c *gin.Context) {
 	param := service.TagListRequest{}
 	response := app.NewResponse(c)
-
 	// 参数检查
 	valid, errs := app.BindAndValid(c, &param)
 	if !valid {

@@ -41,3 +41,14 @@ JWT:
   Issuer: blog_service
   # 过期时间
   Expire: 7200
+
+
+EMAIL:
+  Host: smtp.yeah.net
+  Port: 465
+  UserName: xxx@yeah.net
+  Password: xxxxxx
+  IsSSL: true
+  From: xxx@yeah.net
+  To:
+    - xxx@yeah.net
