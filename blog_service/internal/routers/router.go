@@ -17,6 +17,7 @@ func NewRouter() *gin.Engine {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	r.Use(middleware.Translations())
+	r.Use(middleware.AccessLog())
 
 	tag := v1.NewTag()
 	article := v1.NewArticle()
