@@ -43,7 +43,7 @@ JWT:
   Expire: 7200
 
 
-EMAIL:
+Email:
   Host: smtp.yeah.net
   Port: 465
   UserName: xxx@yeah.net
@@ -52,3 +52,16 @@ EMAIL:
   From: xxx@yeah.net
   To:
     - xxx@yeah.net
+
+Limiter:
+
+  Limits:
+    - Key: "/auth"
+      FillInterval: 1
+      Capacity: 10
+      Quantum: 10
+
+    - Key: "/api/v1/tags"
+      FillInterval: 1
+      Capacity: 10
+      Quantum: 10

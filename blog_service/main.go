@@ -80,6 +80,12 @@ func setupSetting() error {
 		return err
 	}
 
+	err = settings.ReadSection("Limiter", &global.LimiterSetting)
+	fmt.Println(">>>>>>>>>", err)
+	if err != nil {
+		return err
+	}
+
 	global.ServerSetting.ReadTimeout *= time.Second
 	global.ServerSetting.WriteTimeout *= time.Second
 	global.JWTSetting.Expire *= time.Second

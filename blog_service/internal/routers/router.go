@@ -13,21 +13,6 @@ import (
 	"time"
 )
 
-// 限制了/auth的访问频率
-// 限制时间间隔, 1秒钟
-// 一秒钟内, 最多被访问10次
-// 当一秒后, 重新放入10个令牌到令牌桶内, 也就是下一秒可再次被访问10次
-var methodLimiters = limiter.NewMethodLimiter().AddBuckets(limiter.LimiterBucketRule{
-	// 令牌桶限制的url
-	Key: "/auth",
-	// 时间间隔
-	FillInterval: time.Second * 1,
-	// 令牌总容量
-	Capacity: 10,
-	// 重新放入令牌桶数量
-	Quantum: 10,
-})
-
 func NewRouter() *gin.Engine {
 
 	r := gin.New()
@@ -37,7 +22,7 @@ func NewRouter() *gin.Engine {
 	r.Use(middleware.Recovery())
 	r.Use(middleware.Translations())
 	r.Use(middleware.AppInfo())
-	r.Use(middleware.RateLimiter(methodLimiters))
+	r.Use(middleware.RateLimiter(newLimiter()))
 	r.Use(middleware.ContextTimeout(60 * time.Second))
 
 	tag := v1.NewTag()
@@ -71,4 +56,24 @@ func NewRouter() *gin.Engine {
 	}
 
 	return r
+}
+
+func newLimiter() limiter.LimiterIface {
+
+	var rules []limiter.LimiterBucketRule
+	for _, limit := range global.LimiterSetting.Limits {
+		rules = append(rules, limiter.LimiterBucketRule{
+			// 令牌桶限制的url
+			Key: limit.Key,
+			// 时间间隔
+			FillInterval: limit.FillInterval * time.Second,
+			// 令牌总容量
+			Capacity: limit.Capacity,
+			// 重新放入令牌桶数量
+			Quantum: limit.Quantum,
+		})
+	}
+	var methodLimiters = limiter.NewMethodLimiter().AddBuckets(rules...)
+
+	return methodLimiters
 }

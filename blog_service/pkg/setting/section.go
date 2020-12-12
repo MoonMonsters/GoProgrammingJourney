@@ -50,6 +50,15 @@ type EmailSetting struct {
 	To       []string
 }
 
+type LimiterSetting struct {
+	Limits []struct {
+		Key          string
+		FillInterval time.Duration
+		Capacity     int64
+		Quantum      int64
+	}
+}
+
 func (s *Setting) ReadSection(k string, v interface{}) error {
 	err := s.vp.UnmarshalKey(k, v)
 	if err != nil {
