@@ -10,6 +10,7 @@ type MethodLimiter struct {
 	*Limiter
 }
 
+// 创建一个令牌桶
 func NewMethodLimiter() LimiterIface {
 	return MethodLimiter{
 		Limiter: &Limiter{
@@ -35,6 +36,7 @@ func (l MethodLimiter) GetBucket(key string) (*ratelimit.Bucket, bool) {
 	return bucket, ok
 }
 
+// 添加bucket
 func (l MethodLimiter) AddBuckets(rules ...LimiterBucketRule) LimiterIface {
 	for _, rule := range rules {
 		if _, ok := l.limiterBuckets[rule.Key]; !ok {

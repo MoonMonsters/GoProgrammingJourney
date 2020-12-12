@@ -6,10 +6,12 @@ import (
 	"time"
 )
 
+// 令牌桶信息
 type Limiter struct {
 	limiterBuckets map[string]*ratelimit.Bucket
 }
 
+// 令牌Bucket
 type LimiterBucketRule struct {
 	// 自定义键值对名称
 	Key string
@@ -21,6 +23,7 @@ type LimiterBucketRule struct {
 	Quantum int64
 }
 
+// 接口
 type LimiterIface interface {
 	// 获取对应的限流器的键值对名称
 	Key(c *gin.Context) string
