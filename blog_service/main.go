@@ -81,7 +81,6 @@ func setupSetting() error {
 	}
 
 	err = settings.ReadSection("Limiter", &global.LimiterSetting)
-	fmt.Println(">>>>>>>>>", err)
 	if err != nil {
 		return err
 	}
